@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block metas %}
+    {{ super() }}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <center><h2 class="display-4">AI-Based DGA Classifier</h2></center>
+        <hr>
+        <form method="post">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <center><b> {{ form.domain.label }} </b></center>
+                {% if form.domain.errors %}
+                    {{ form.domain(class='form-control is-invalid') }}
+                    {% for error in form.domain.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.domain(class='form-control') }}
+                {% endif %}
+            </div>
+            <center>{{ form.submit(class='btn btn-primary') }}</center>
+            {% if show_predictions_modal %}
+                <p></p>
+                <hr>
+                <p></p>
+                <center>
+                    {{ form.domain.data }} is 
+                    <b>{{ form.prediction }}</b> </center>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

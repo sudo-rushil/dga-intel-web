@@ -1,0 +1,4 @@
+tensorflow
+flask
+pandas
+flask_wtf
