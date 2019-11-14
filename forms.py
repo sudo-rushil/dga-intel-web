@@ -17,7 +17,7 @@ class URL(Regexp):
         super(URL, self).__call__(form, field)
 
 class LoginForm(FlaskForm):
-    domain = StringField('Domain Name', validators=[URL()])
+    domain = StringField('Domain Name (e.g. google.com)', validators=[URL()])
     submit = SubmitField('Classify')
     prediction = 'legit'
 

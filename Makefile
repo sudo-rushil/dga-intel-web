@@ -1,11 +1,21 @@
+NAME = dga_intel
+
 default:
-	flask run --host=0.0.0.0 --port=80
+		flask run --host=0.0.0.0 --port=80
 
 run:
-	docker run -d --rm -p 80:80 ai_dga
+		docker run --name $(NAME) -d --rm -p 80:80 $(NAME)
 
 install:
-	pip install -r requirements.txt
+		pip install -r requirements.txt
 
 build:
-	docker build -t ai_dga .
+		docker build -t $(NAME) .
+
+stop:
+		docker stop $(NAME)
+
+pull:
+		git pull
+
+rebuild: stop pull build run
