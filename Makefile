@@ -13,7 +13,7 @@ build:
 		docker build -t $(NAME) .
 
 stop:
-		docker stop $(NAME)
+		docker stop $(NAME) || echo stopped
 
 pull:
 		git pull
