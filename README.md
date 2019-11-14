@@ -8,29 +8,38 @@ Many forms of malware uses domain generation algorithms (DGAs) to connect with a
 This model was based on an architecture from  [2] and implemented in Tensorflow. It embeds domain names, feeds the embeddings through a convolutional network, feeds that through an LSTM, and passes that through a dense layer for classification. This approach captures the local similarity inherent in genuine domains, as well as spatial connections between characters.
 
 ### The Data
-The training data was a set of 100000 domain names labelled as either 0 (genuine) or 1 (fake) (orginally from the Splunk DGA app). The test data used to examine the model performance consists of two datasets: A set of generated domains from the Bambenek DGA feed, and a set of genuine domains from Alexa's top 1 million domains.
+The training data was a set of 1.5 million domain names labelled as either 0 (genuine) or 1 (fake) from the Splunk DGA app, Alexa's top 1 million domains, and the Bambenek DGA feed. 10% of domains were stripped of their TLD and subdomain before being fed through the model. The test data was a set of 100000 domains from a different slice of this data.
 
 ### Results
-The model was trained for twenty epochs with the Adam optimizer. It was tested by evaluating its predictive accuracy on 10000 domains each from the shuffled genuine and fake test datasets. It achieved **98.7% accuracy on the fake domains**, and **98.8% accuracy on the genuine domains**.
+The model was trained for twenty epochs with the Adam optimizer. It was tested by evaluating its predictive accuracy on 100000 domains from the shuffled test datasets. It achieved **98.8% accuracy on the test data**.
+
+### Website Usage
+You can query whether a given domain is legit or fake through this model at http://dgaintel.com/.
 
 ### Development 
-The model can be loaded through Tensorflow's Keras API from the `domain_classifier.h5` file.
+The model can be loaded through Tensorflow's Keras API from the `domain_classifier_model.h5` file.
 To further experiment with the code:
 
 1. Go to Google Colab 
 2. Go to File > Open Notebook... > Github
-3. Search for https://github.com/sudo-rushil/CNN-LSTM_Domain_Classifier
-4. Open `domain_classifier_model.ipynb`
+3. Search for https://github.com/sudo-rushil/dga-intel
+4. Open `domain_data.ipynb` or `domain_model.ipynb`
 
-### Usage
-    $ git clone https://github.com/sudo-rushil/CNN-LSTM_Domain_Classifier
-    $ cd CNN-LSTM_Domain_Classifier
+### Code Usage
+    $ git clone https://github.com/sudo-rushil/dga-intel
+    $ cd dga-intel
     $ python predict_domain.py [domain name]
 
 ### Example
     $ python predict_domain.py wikipedia.com
     
     The domain wikipedia.com is genuine with probability 1.0
+
+### Contact
+If you run across any issues, file an issue at https://github.com/sudo-rushil/dga-intel/issues. 
+
+My LinkedIn page can be found [here](https://www.linkedin.com/in/rushil-mallarapu/).
+
 #### References
 [1] Abadi, *et al.* TensorFlow: Large-scale machine learning on heterogeneous systems, 2015. Software available from tensorflow.org.
 
