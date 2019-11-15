@@ -18,4 +18,11 @@ stop:
 pull:
 		git pull
 
-rebuild: stop pull build run
+deploy:
+		(git pull | egrep 'up to date') || make rebuild
+		
+test:
+		python test.py
+
+rebuild: pull test stop build run
+
