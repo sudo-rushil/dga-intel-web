@@ -33,12 +33,29 @@
             </div>
             <center>{{ form.submit(class='btn btn-primary') }}</center>
             {% if show_predictions_modal %}
+                <h4>Prediction</h4>
                 <p></p>
                 <hr>
                 <p></p>
                 <center>
                     {{ form.domain.data }} is 
                     <b>{{ form.prediction }}</b> </center>
+                {% if form.whois %}
+                    <h4>Whois Data</h4>
+                    <p></p>
+                    <hr>
+                    <p></p>
+                    <center>
+                        registrar is <b>{{ form.whois['registrar'] }}</b> </center>
+                    <p></p>
+                    <center>
+                        created on <b>{{ form.whois['creation_date'].strftime("%c") }}</b> </center>
+                    <p></p>
+                    <center>
+                        expires on <b>{{ form.whois['expiration_date'].strftime("%c") }}</b> </center>
+                {% else %}
+                    <h5>No whois data availible</h5>
+                {% endif %}
             {% endif %}
         </form>
     </div>

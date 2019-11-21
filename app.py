@@ -10,6 +10,7 @@ from flask_wtf.csrf import validate_csrf
 from wtforms import ValidationError
 from forms import LoginForm
 from predict_domain import get_prediction
+from whois_query import get_whois
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'super secret')
@@ -20,6 +21,7 @@ def index():
     show_predictions_modal=False
     if form.validate_on_submit():
         _prediction = get_prediction(form.domain.data)
+        form.whois = get_whois(form.domain.data)
         if _prediction == -1:
             form.prediction = "invalid (contains invalid characters)"
         elif _prediction > 0.5:

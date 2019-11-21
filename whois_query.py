@@ -2,7 +2,10 @@ import whois
 
 def get_whois(domain):
     query = whois.query(domain)
-    return query.__dict__
+    if query:
+        return query.__dict__
+    else:
+        return False
 
 if __name__ == '__main__':
     print('test domain: microsoft.com')

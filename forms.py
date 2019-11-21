@@ -20,4 +20,5 @@ class LoginForm(FlaskForm):
     domain = StringField('Domain Name (e.g. google.com)', validators=[URL()])
     submit = SubmitField('Classify')
     prediction = 'legit'
+    whois = False
 
