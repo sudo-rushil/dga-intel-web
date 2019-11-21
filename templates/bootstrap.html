@@ -40,8 +40,8 @@
                 <center>
                     {{ form.domain.data }} is 
                     <b>{{ form.prediction }}</b> </center>
+                <h4>WHOIS Data</h4>
                 {% if form.whois %}
-                    <h4>Whois Data</h4>
                     <p></p>
                     <hr>
                     <p></p>
@@ -54,7 +54,10 @@
                     <center>
                         expires on <b>{{ form.whois['expiration_date'].strftime("%c") }}</b> </center>
                 {% else %}
-                    <h5>No whois data availible</h5>
+                    <p></p>
+                    <hr>
+                    <p></p>
+                    <center>No WHOIS data availible</center>
                 {% endif %}
             {% endif %}
         </form>
