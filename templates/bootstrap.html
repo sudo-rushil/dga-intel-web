@@ -40,6 +40,7 @@
                 <center>
                     {{ form.domain.data }} is 
                     <b>{{ form.prediction }}</b> </center>
+                <p></p>
                 <h4>WHOIS Data</h4>
                 {% if form.whois %}
                     <p></p>
@@ -59,6 +60,10 @@
                     <p></p>
                     <center>No WHOIS data availible</center>
                 {% endif %}
+                <p></p>
+                <hr>
+                <p></p>
+                <center><input class="btn btn-primary" type="button" onclick="window.location.href = 'https://www.virustotal.com/gui/domain/{{ form.domain.data }}';" value="VirusTotal"></center>
             {% endif %}
         </form>
     </div>

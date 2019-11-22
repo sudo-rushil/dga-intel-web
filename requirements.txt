@@ -1,4 +1,6 @@
 tensorflow
 flask
+whois
+threat_intel
 pandas
 flask_wtf

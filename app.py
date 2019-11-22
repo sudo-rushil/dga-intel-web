@@ -10,7 +10,7 @@ from flask_wtf.csrf import validate_csrf
 from wtforms import ValidationError
 from forms import LoginForm
 from predict_domain import get_prediction
-from whois_query import get_whois
+from intel_query import get_whois
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'super secret')

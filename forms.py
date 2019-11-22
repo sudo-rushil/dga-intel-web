@@ -19,6 +19,7 @@ class URL(Regexp):
 class LoginForm(FlaskForm):
     domain = StringField('Domain Name (e.g. google.com)', validators=[URL()])
     submit = SubmitField('Classify')
+    virustotal = SubmitField('VirusTotal')
     prediction = 'legit'
     whois = False
 
