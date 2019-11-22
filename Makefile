@@ -24,5 +24,5 @@ deploy:
 test:
 		python test.py
 
-rebuild: pull test stop build run
+rebuild: pull stop build run
 
