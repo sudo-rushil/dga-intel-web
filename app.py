@@ -9,7 +9,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, sen
 from flask_wtf.csrf import validate_csrf
 from wtforms import ValidationError
 from forms import LoginForm
-from predict_domain import get_prediction
+from dgaintel import get_prediction
 from intel_query import get_whois
 
 app = Flask(__name__)
