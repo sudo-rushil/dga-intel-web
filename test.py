@@ -1,5 +1,5 @@
 import unittest
-from predict_domain import get_prediction
+from dgaintel import get_prediction
 
 class TestPrediction(unittest.TestCase):
 

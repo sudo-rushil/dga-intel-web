@@ -1,5 +1,6 @@
 tensorflow
 flask
+dgaintel
 whois
 threat_intel
 pandas
