@@ -4,16 +4,17 @@ default:
 		flask run --host=0.0.0.0 --port=80
 
 run:
-		docker run --name $(NAME) -d --rm -p 80:80 $(NAME)
+		docker-compose up -d
 
 install:
 		pip install -r requirements.txt
 
 build:
 		docker build -t $(NAME) .
+		docker network create dga_intel
 
 stop:
-		docker stop $(NAME) || echo stopped
+		docker-compose stop
 
 pull:
 		git pull
@@ -26,3 +27,5 @@ test:
 
 rebuild: pull stop build run
 
+up:
+	docker-compose up
