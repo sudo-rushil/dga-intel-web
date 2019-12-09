@@ -42,25 +42,27 @@
                     <b>{{ form.prediction }}</b> </center>
                 <p></p>
                 <h4>WHOIS Data</h4>
-                {% if form.whois %}
-                    <p></p>
-                    <hr>
-                    <p></p>
+                <p></p>
+                <hr>
+                <p></p>
+                {% if form.whois['registrar'] %}
                     <center>
                         registrar is <b>{{ form.whois['registrar'] }}</b> </center>
                     <p></p>
-                    <center>
-                        created on <b>{{ form.whois['creation_date'].strftime("%c") }}</b> </center>
-                    <p></p>
-                    <center>
-                        expires on <b>{{ form.whois['expiration_date'].strftime("%c") }}</b> </center>
+                    {% if form.whois['creation_date'] %}
+                        <center>
+                            created on <b>{{ form.whois['creation_date'].strftime("%c") }}</b> </center>
+                        <p></p>
+                    {% endif %}
+                    {% if form.whois['expiration_date'] %}
+                        <center>
+                            expires on <b>{{ form.whois['expiration_date'].strftime("%c") }}</b> </center>
+                        <p></p>
+                    {% endif %}
                 {% else %}
-                    <p></p>
-                    <hr>
-                    <p></p>
                     <center>No WHOIS data availible</center>
+                    <p></p>
                 {% endif %}
-                <p></p>
                 <hr>
                 <p></p>
                 <center><input class="btn btn-primary" type="button" onclick="window.location.href = 'https://www.virustotal.com/gui/domain/{{ form.domain.data }}';" value="VirusTotal"></center>

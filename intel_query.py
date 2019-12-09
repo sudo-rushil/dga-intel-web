@@ -1,18 +1,13 @@
 import whois
-from threat_intel.virustotal import VirusTotalApi
-
-vt = VirusTotalApi("<Your Virustotal API Key>")
 
 def get_whois(domain):
     try:
         query = whois.query(domain)
-    except:
-        return False
-        
-    if query:
+        assert isinstance(query, whois._3_adjust.Domain)
         return query.__dict__
-    else:
-        return False
+    except:
+        pass
+    return None
 
 def get_scans(domain):
     url = "http://" + domain
