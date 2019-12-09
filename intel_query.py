@@ -4,7 +4,11 @@ from threat_intel.virustotal import VirusTotalApi
 vt = VirusTotalApi("<Your Virustotal API Key>")
 
 def get_whois(domain):
-    query = whois.query(domain)
+    try:
+        query = whois.query(domain)
+    except:
+        return False
+        
     if query:
         return query.__dict__
     else:
